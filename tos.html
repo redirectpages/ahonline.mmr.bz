@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    file = elmnt.getAttribute("include-html");
+    if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          elmnt.removeAttribute("include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      return;
+    }
+  }
+};
+</script>
+<div include-html="/inc/header.html"></div> 
+
+<main id="main">
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2> </h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>TOS</li>
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section class="inner-page pt-4">
+    <div class="container">
+        <p>
+          <h3>Terms of Service</h3>
+          <br/>
+          <h4>1. Acceptance of Terms</h4>
+          
+          By accessing or using service of AH Web Solutions, you agree to comply with and be bound by these Terms of Service. If you do not agree with these terms, please do not use our website or services.
+          
+          <br><br>
+          <h4>2. Definitions</h4>
+          
+          "We," "Us," or "AH Web Solutions Company Limited" refers to the provider of the website or service.
+          "You" or "User" refers to any person or entity using our website or service.
+          "Content" means all text, images, videos, data, information, or other materials.
+          
+          <br><br>
+          <h4>3. Use of the Service</h4>
+          
+          3.1. Eligibility: You must be at least 18 years old to use our services. If you are under 18, you must have parental or guardian consent. <br/>
+          
+          3.2. Registration: You may be required to register for an account to access certain features. You are responsible for maintaining the security of your account credentials. <br/>
+          
+          3.3. User Conduct: You agree not to use our service for any unlawful or prohibited purposes. This includes but is not limited to: 
+          <ul>
+            <li>Violating any applicable laws or regulations.</li>
+            <li>Harassing, threatening, or abusing other users.</li>
+            <li>Uploading malicious software or content.</li>
+            <li>Attempting to gain unauthorized access to our systems.</li>
+          </ul>
+          
+          <h4>4. Content</h4>
+          
+          4.1. Ownership: We do not claim ownership of the content you submit or upload. However, by using our service, you grant us a worldwide, non-exclusive, royalty-free license to use, distribute, and display your content in connection with our service. <br/>
+          
+          4.2. Prohibited Content: You are prohibited from posting or uploading any content that:
+          
+          <ul>
+            <li>Violates the rights of others, including copyright and trademark.</li>
+            <li>Is harmful, offensive, or inappropriate.</li>
+            <li>Contains false information or is misleading.</li>
+          </ul>
+
+          <h4>5. Termination</h4>
+          
+          We reserve the right to suspend or terminate your access to the service at our sole discretion, with or without cause and with or without notice.
+          
+          <br><br>
+          <h4>6. Privacy</h4>
+          
+          Our Privacy Policy governs the use of your personal information. By using our service, you consent to the collection and use of your data as outlined in the Privacy Policy.
+          
+          <br><br>
+          <h4>7. Disclaimers</h4>
+          
+          7.1. No Warranty: We provide our service "as is," without any warranty or guarantee. Your use of the service is at your own risk. <br/>
+          
+          7.2. Limitation of Liability: We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues.
+          
+          <br><br>
+          <h4>8. Changes to Terms</h4>
+          
+          We reserve the right to update or change these Terms of Service at any time. We will notify you of any changes by posting the new terms on this page. Your continued use of the service after such changes constitutes your acceptance of the new terms.
+          
+          <br><br>
+          <h4>9. Contact Information</h4>
+          
+          If you have any questions or concerns regarding these Terms of Service, please contact us at hello@ahonline.mmr.bz.
+          
+          By using our service, you acknowledge that you have read, understood, and agreed to these Terms of Service.
+        </p>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+ 
+<div include-html="/inc/footer.html"></div> 
+<script>
+  includeHTML();
+</script>
+</html>
