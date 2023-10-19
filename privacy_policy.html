@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    file = elmnt.getAttribute("include-html");
-    if (file) {
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          elmnt.removeAttribute("include-html");
-          includeHTML();
+function includeHTML(file) {
+  return new Promise((resolve, reject) => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          const el = document.createElement('div');
+          el.innerHTML = this.responseText;
+          document.body.appendChild(el);
+          resolve();
+        } else {
+          reject(new Error('Page not found.'));
         }
-      }      
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      return;
-    }
+      }
+    };
+    xhttp.open('GET', file, true);
+    xhttp.send();
+  });
+}
+
+async function loadHTML() {
+  try {
+    await includeHTML('/inc/header.html');
+    const toggle = document.querySelector('.mobile-nav-toggle');
+    const navbar = document.querySelector('#navbar');
+    await includeHTML('/inc/footer.html')
+    toggle.addEventListener('click', function(e) {
+      navbar.classList.toggle('navbar-mobile');
+      this.classList.toggle('bi-list')
+      this.classList.toggle('bi-x')
+    });
+  } catch (error) {
+    console.error(error);
   }
-};
+}
 </script>
 <div include-html="/inc/header.html"></div> 
 
@@ -121,6 +134,6 @@ function includeHTML() {
  
 <div include-html="/inc/footer.html"></div> 
 <script>
-  includeHTML();
+  loadHTML();
 </script>
 </html>

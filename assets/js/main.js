@@ -240,17 +240,4 @@
 	// 	form.submit();
 	// }
 
-  // contact form
-
-  document.getElementById("form_submit").addEventListener("click", function (e) {
-    e.preventDefault();
-	  sendMail();
-	});
-  
-  function sendMail() {
-    var $subject = document.querySelector('#form_subject').value;
-    var $body = document.querySelector('#form_body').value;
-    window.open('mailto:hello@ahonline.mmr.bz?subject='+$subject+'&body='+$body);
-  }
-
 })()
