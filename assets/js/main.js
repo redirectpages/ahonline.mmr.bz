@@ -239,4 +239,15 @@
 		document.body.appendChild(form);
 		form.submit();
 	}
+
+  $('#footer-contact-a').hover(function() {
+    $(this).css('cursor', 'pointer');
+  })
+  
+  function sendMail() {
+    $subject = $('#form_subject').val();
+  $body = $('#form_body').val();
+  window.location='mailto:info@mtg.com.mm?subject='+$subject+'&body='+$body;
+  }
+
 })()
