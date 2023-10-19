@@ -215,39 +215,42 @@
   });
   
   // search
-	document.getElementById("search-btn").addEventListener("click", function () {
-	  search();
-	});
+	// document.getElementById("search-btn").addEventListener("click", function () {
+	//   search();
+	// });
 	
-	document.getElementById("q").addEventListener("keypress", function (event) {
-		if (event.key === "Enter") {
-			document.getElementById("search-btn").click();
-		  }
-	});
+	// document.getElementById("q").addEventListener("keypress", function (event) {
+	// 	if (event.key === "Enter") {
+	// 		document.getElementById("search-btn").click();
+	// 	  }
+	// });
 
-	function search() {
-		var query = document.createElement("input");
-		var value = "site:" + window.location.hostname + ' ' + document.getElementById("q").value;
-		query.setAttribute("value", value)
-		query.name = "q";
+	// function search() {
+	// 	var query = document.createElement("input");
+	// 	var value = "site:" + window.location.hostname + ' ' + document.getElementById("q").value;
+	// 	query.setAttribute("value", value)
+	// 	query.name = "q";
 
-		var form = document.createElement("form");
-		form.method = "GET";
-		form.action = "https://www.google.com/search";   
-		form.appendChild(query);  
+	// 	var form = document.createElement("form");
+	// 	form.method = "GET";
+	// 	form.action = "https://www.google.com/search";   
+	// 	form.appendChild(query);  
 		
-		document.body.appendChild(form);
-		form.submit();
-	}
+	// 	document.body.appendChild(form);
+	// 	form.submit();
+	// }
 
-  $('#footer-contact-a').hover(function() {
-    $(this).css('cursor', 'pointer');
-  })
+  // contact form
+
+  document.getElementById("form_submit").addEventListener("click", function (e) {
+    e.preventDefault();
+	  sendMail();
+	});
   
   function sendMail() {
-    $subject = $('#form_subject').val();
-  $body = $('#form_body').val();
-  window.location='mailto:info@mtg.com.mm?subject='+$subject+'&body='+$body;
+    var $subject = document.querySelector('#form_subject').value;
+    var $body = document.querySelector('#form_body').value;
+    window.open('mailto:hello@ahonline.mmr.bz?subject='+$subject+'&body='+$body);
   }
 
 })()

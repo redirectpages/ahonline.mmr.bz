@@ -1404,7 +1404,7 @@ section {
 
 .footer .list-menu>h4 {
   color: #fff;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
 }
 
 .footer .list-menu ul li a {
@@ -1536,4 +1536,13 @@ body{
   font-family: "Chokokutai", sans-serif;
   display: inline-block;
   text-decoration: none;
+}
+
+#form_submit {
+  cursor: pointer;
+  background: #71c55d;
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
 }
