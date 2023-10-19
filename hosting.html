@@ -3,7 +3,6 @@
 <script>
 function includeHTML(e){return new Promise(((t,n)=>{const o=new XMLHttpRequest;o.onreadystatechange=function(){if(4===this.readyState)if(200===this.status){const e=document.createElement("div");e.innerHTML=this.responseText,document.body.appendChild(e),t()}else n(new Error("Page not found."))},o.open("GET",e,!0),o.send()}))}async function loadHTML(){try{await includeHTML("/inc/header.html");const e=document.querySelector(".mobile-nav-toggle"),t=document.querySelector("#navbar");await includeHTML("/inc/footer.html"),e.addEventListener("click",(function(e){t.classList.toggle("navbar-mobile"),this.classList.toggle("bi-list"),this.classList.toggle("bi-x")}))}catch(e){console.error(e)}}
 </script>
-<div include-html="/inc/header.html"></div> 
 
 <main id="main">
 
@@ -30,7 +29,6 @@ function includeHTML(e){return new Promise(((t,n)=>{const o=new XMLHttpRequest;o
 
 </main><!-- End #main -->
  
-<div include-html="/inc/footer.html"></div> 
 <script>
   loadHTML();
 </script>
