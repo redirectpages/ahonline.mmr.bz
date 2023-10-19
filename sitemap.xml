@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ahonline.mmr.bz/</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/hosting.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/interface.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/seo.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/tos.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/privacy_policy.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/faq.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ahonline.mmr.bz/index.html</loc>
+  <lastmod>2023-10-19T15:09:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
