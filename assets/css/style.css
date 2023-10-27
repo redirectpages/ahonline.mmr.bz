@@ -1569,3 +1569,19 @@ body{
   background: #71c55d;
   color: #fff;
 }
+
+#hosting {
+  width: 100%;
+  height: 80vh;
+  background: url(../img/path203.svg) center no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+
+#interface {
+  width: 100%;
+  height: 81vh;
+  background: url(../img/path23.svg) center no-repeat;
+  background-size: 100%;
+  position: relative;
+}
