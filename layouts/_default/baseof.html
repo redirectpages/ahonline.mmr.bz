@@ -24,7 +24,7 @@
   <meta name="robots" content="max-image-preview:large">
 
   <!-- manifest -->
-  <link rel="manifest" href="manifest.json" />
+  <link rel="manifest" href="{{ .Site.BaseURL }}manifest.json" />
   <meta name="apple-mobile-web-app-status-bar" content="#dd1a0c" />
   <meta name="theme-color" content="#dd1a0c" />
 
@@ -189,7 +189,7 @@
   }
   </script>
 
-  <script src="/pwa.js"></script>
+  <script src="{{ .Site.BaseURL }}pwa.js"></script>
 </body>
 
 </html>
