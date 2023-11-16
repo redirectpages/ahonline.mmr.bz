@@ -37,7 +37,7 @@ self.addEventListener('fetch', (event) => {
         try {
           const networkResp = await fetch(event.request);
           if (networkResp && networkResp.status === 200) {
-            const cache = await caches.open(CACHE_NAME);
+            const cache = await caches.open(KEY);
             cache.put(event.request, networkResp.clone());
             return networkResp;
           }
