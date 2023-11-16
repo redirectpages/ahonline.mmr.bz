@@ -3,14 +3,23 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 const CACHE = "cache-v1";
 
 const offlineFallbackPage = [
+        "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0",
         "assets/img/logo.webp",
         "assets/vendor/aos/aos.css",
         "assets/vendor/bootstrap/css/bootstrap.min.css",
         "assets/vendor/bootstrap-icons/bootstrap-icons.css",
-        "assets/css/style.css",
-        "assets/vendor/aos/aos.js",
+        "assets/vendor/glightbox/css/glightbox.min.css",
+        "assets/vendor/swiper/swiper-bundle.min.css",
         "assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+        "assets/vendor/swiper/swiper-bundle.min.js",
+        "assets/vendor/glightbox/js/glightbox.min.js",
+        "assets/vendor/swiper/swiper-bundle.min.js",
+        "assets/vendor/php-email-form/validate.js",
+        "assets/vendor/aos/aos.js",
+        "assets/css/style.css",
         "assets/js/main.js",
+        "manifese.json",
+        "pwa.js",
         "/"
     ];
 
