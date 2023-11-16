@@ -24,34 +24,26 @@ if (workbox.navigationPreload.isSupported()) {
 self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
-      const preloadResp = await event.preloadResponse;
-
-      if (preloadResp) {
-        return preloadResp;
-      }
-
       try {
         const cachedResp = await fromCache(event.request);
         if (cachedResp) {
           return cachedResp;
         }
       } catch (error) {
-        // Handle errors, if needed
+        // Handle cache errors, if needed
       }
 
-      // If the cache doesn't contain a response, fetch from the network
       try {
         const networkResp = await fromNetwork(event.request, 5000);
         if (networkResp && networkResp.status === 200) {
-          // Update the cache with the fetched response
           event.waitUntil(update(event.request.clone(), networkResp.clone()));
           return networkResp;
         }
       } catch (error) {
-        // Handle errors, if needed
+        // Handle network errors, if needed
       }
 
-      // If both cache and network fail, return a generic response
+      // If both cache and network fail, respond with a generic offline message
       return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
     })());
   }
