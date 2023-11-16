@@ -21,50 +21,59 @@ if (workbox.navigationPreload.isSupported()) {
   workbox.navigationPreload.enable();
 }
 
-const fromNetwork = (request, timeout) =>
-  new Promise((fulfill, reject) => {
-    const timeoutId = setTimeout(reject, timeout);
-    fetch(request).then(response => {
-      clearTimeout(timeoutId);
-      fulfill(response);
-      update(request);
-    }, reject);
-  });
-
-const fromCache = request =>
-  caches
-    .open(KEY)
-    .then(cache =>
-      cache
-        .match(request)
-        .then(matching => matching || cache.match('/'))
-    );
-
-const update = request =>
-  caches
-    .open(KEY)
-    .then(cache =>
-      fetch(request).then(response => cache.put(request, response))
-    );
-
 self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith((async () => {
-      
-        const preloadResp = await event.preloadResponse;
+      const preloadResp = await event.preloadResponse;
 
-        if (preloadResp) {
-          return preloadResp;
-        }
+      if (preloadResp) {
+        return preloadResp;
+      }
 
-        const networkResp = await fetch(event.request);
-        if(networkResp) {
-          return networkResp;
-        } else {
-          const cache = await caches.open(KEY);
-          const cachedResp = await cache.match(offlineFallbackPage);
+      try {
+        const cachedResp = await fromCache(event.request);
+        if (cachedResp) {
           return cachedResp;
         }
+      } catch (error) {
+        // Handle errors, if needed
+      }
+
+      // If the cache doesn't contain a response, fetch from the network
+      try {
+        const networkResp = await fromNetwork(event.request, 5000);
+        if (networkResp && networkResp.status === 200) {
+          // Update the cache with the fetched response
+          event.waitUntil(update(event.request.clone(), networkResp.clone()));
+          return networkResp;
+        }
+      } catch (error) {
+        // Handle errors, if needed
+      }
+
+      // If both cache and network fail, return a generic response
+      return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
     })());
   }
 });
+
+const update = (request, response) =>
+  caches.open(KEY).then((cache) => cache.put(request, response));
+
+const fromNetwork = (request, timeout) =>
+  new Promise((fulfill, reject) => {
+    const timeoutId = setTimeout(reject, timeout);
+    fetch(request)
+      .then((response) => {
+        clearTimeout(timeoutId);
+        fulfill(response);
+      })
+      .catch(reject);
+  });
+
+const fromCache = (request) =>
+  caches
+    .open(KEY)
+    .then((cache) =>
+      cache.match(request).then((matching) => matching || cache.match('/'))
+    );
