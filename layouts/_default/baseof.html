@@ -23,6 +23,11 @@
   <meta property="og:image" content="https://ahonline.mmr.bz/assets/img/logo.webp">
   <meta name="robots" content="max-image-preview:large">
 
+  <!-- manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-status-bar" content="#dd1a0c" />
+  <meta name="theme-color" content="#dd1a0c" />
+
   <!-- Favicons -->
   <link href="{{ .Site.BaseURL }}assets/img/logo.webp" rel="icon">
   <link href="{{ .Site.BaseURL }}assets/img/logo.webp" rel="apple-touch-icon">
@@ -183,6 +188,8 @@
     window.open('mailto:hello@ahonline.mmr.bz?subject='+$subject+'&body='+$body);
   }
   </script>
+
+  <script src="/pwa.js"></script>
 </body>
 
 </html>
