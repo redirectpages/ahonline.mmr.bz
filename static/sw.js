@@ -1,53 +1,15 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+importScripts('https://unpkg.com/workbox-sw@0.0.2/build/importScripts/workbox-sw.dev.v0.0.2.js');
+importScripts('https://unpkg.com/workbox-runtime-caching@1.3.0/build/importScripts/workbox-runtime-caching.prod.v1.3.0.js');
+importScripts('https://unpkg.com/workbox-routing@1.3.0/build/importScripts/workbox-routing.prod.v1.3.0.js');
 
-const KEY = 'key';
-
-self.addEventListener('install', (event) => {
-    event.waitUntil(self.skipWaiting());
+const assetRoute = new workbox.routing.RegExpRoute({
+    regExp: new RegExp('^/*'),
+    handler: new workbox.runtimeCaching.CacheFirst()
 });
 
-self.addEventListener('message', (event) => {
-    if (event.data.type === 'CACHE_URLS') {
-        event.waitUntil(
-            caches.open(KEY)
-                .then( (cache) => {
-                    return cache.addAll(event.data.payload);
-                })
-        );
-    }
+const router = new workbox.routing.Router();
+//router.addFetchListener();
+router.registerRoutes({routes: [assetRoute]});
+router.setDefaultHandler({
+    handler: new workbox.runtimeCaching.CacheFirst()
 });
-
-if (workbox.navigationPreload.isSupported()) {
-  workbox.navigationPreload.enable();
-}
-
-self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      (async () => {
-        try {
-          const cachedResp = await caches.match(event.request);
-          if (cachedResp) {
-            return cachedResp;
-          }
-        } catch (error) {
-          // Handle cache errors, if needed
-        }
-
-        try {
-          const networkResp = await fetch(event.request);
-          if (networkResp && networkResp.status === 200) {
-            const cache = await caches.open(KEY);
-            cache.put(event.request, networkResp.clone());
-            return networkResp;
-          }
-        } catch (error) {
-          // Handle network errors, if needed
-        }
-          
-        return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
-      })()
-    );
-  }
-});
-
