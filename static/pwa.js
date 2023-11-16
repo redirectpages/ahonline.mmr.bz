@@ -1,10 +1,14 @@
-// Service Worker Register 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('//'+window.location.hostname+'/sworker.js')
-            .then(registration => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then((registration) => {
+            const data = {
+                type: 'CACHE_URLS',
+                payload: [
+                    location.href,
+                    ...performance.getEntriesByType('resource').map((r) => r.name)
+                ]
+            };
+            registration.installing.postMessage(data);
         })
-            .catch(err => {
-        });
-    });
+        .catch((err) => console.log('SW registration FAIL:', err));
 }
