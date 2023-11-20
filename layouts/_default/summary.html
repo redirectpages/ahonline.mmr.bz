@@ -1,0 +1,6 @@
+<article class="entry card__box block">
+	{{- partial "entry/featured.html" (dict "page" . "link" .RelPermalink) }}
+	{{- with .Summary }}
+	<div class="entry__content">{{ . }}</div>
+	{{- end }}
+</article>

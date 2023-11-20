@@ -1087,6 +1087,8 @@ section {
 
 #blog .block-blog img {
   width: 100%;
+  height: 15em;
+  object-fit: cover;
 }
 
 #blog .block-blog .content-blog {
@@ -1570,18 +1572,17 @@ body{
   color: #fff;
 }
 
-#hosting {
-  width: 100%;
-  height: 80vh;
-  background: url(../img/path203.svg) center no-repeat;
-  background-size: 100%;
-  position: relative;
+.entry__content {
+	flex: 1 0 auto;
+	margin: 0;
+	overflow: auto;
 }
 
-#interface {
-  width: 100%;
-  height: 81vh;
-  background: url(../img/path23.svg) center no-repeat;
-  background-size: 100%;
-  position: relative;
+.entry__content p:last-child {
+	margin-bottom: 0;
+}
+
+img[src*='#center'] {
+  display: block;
+  margin: auto;
 }
