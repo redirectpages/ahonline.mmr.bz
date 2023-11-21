@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link rel="canonical" href="https://ahonline.mmr.bz/">
+  <link rel="canonical" href="{{ .Site.BaseURL }}">
   {{ $title := site.Title }}
   {{ if not .IsHome }}
     {{ $title = printf "%s | %s" .Title site.Title }}
