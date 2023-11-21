@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2> </h2>
+            <ol>
+            <li><a href="/">Home</a></li>
+            <li>{{ .Title }}</li>
+            </ol>
+        </div>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+
+	<main class="main">
+		
+		<section id="blog" class="padd-sectio">
+			<div class="container aos-init aos-animate" data-aos="fade-up">
+				<div class="row aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+					{{ range .Paginator.Pages }}
+					<div class="col-md-6 col-lg-4">
+						<div class="block-blog text-left">
+						  <!-- <a href="{{ .RelPermalink }}"><img src="{{ .Params.preview }}" alt="img"></a> -->
+						  <div class="content-blog">
+							<h4><a href="{{ .RelPermalink }}">{{ .Render "summary" }}</a></h4>
+							<span>{{ .Date | time.Format ":date_medium" }}</span>
+							<a class="float-end readmore" href="{{ .RelPermalink }}">read more</a>
+						  </div>
+						</div>
+					</div>
+					{{ end }}
+				</div>
+			</div>
+		</section>
+		
+	</main>
+	{{ partial "pagination.html" . }}
+	<div class="seperator"></div>
+{{ end }}
