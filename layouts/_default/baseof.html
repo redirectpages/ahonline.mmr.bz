@@ -10,6 +10,15 @@
     {{ $title = printf "%s | %s" .Title site.Title }}
   {{ end }}
   <title>{{ $title }}</title>
+  <script type="application/ld+json">
+    {
+      "@context" : "https://schema.org",
+      "@type" : "WebSite",
+      "name" : "AH Web Solutions",
+      "alternateName" : ["AH Web Solutions", "AH Online", "AHWS", "AHO"],
+      "url" : {{ .Site.BaseURL }}
+    }
+  </script>
   <meta content="AH Web Solutions. Website designer. AH Web Solutions is the Web Development Service and ICT Solutions Provider in Myanmar, We are providing web solutions..." name="description">
   <meta content="Web Solutions, Web Development Service, web designer, website designer, website development, in Myanmar, Web Application" name="keywords">
 
