@@ -8,7 +8,7 @@ const assetRoute = new workbox.routing.RegExpRoute({
 });
 
 const exclusionRoute = new workbox.routing.RegExpRoute({
-    regExp: new RegExp('^https://www.facebook.com/*'),
+    regExp: new RegExp('^https://*.facebook.com/*'),
     handler: new workbox.runtimeCaching.NetworkOnly()
 });
 
