@@ -7,9 +7,14 @@ const assetRoute = new workbox.routing.RegExpRoute({
     handler: new workbox.runtimeCaching.CacheFirst()
 });
 
+const exclusionRoute = new workbox.routing.RegExpRoute({
+    regExp: new RegExp('^https://www.facebook.com/*'),
+    handler: new workbox.runtimeCaching.NetworkOnly()
+});
+
 const router = new workbox.routing.Router();
 //router.addFetchListener();
-router.registerRoutes({routes: [assetRoute]});
+router.registerRoutes({ routes: [assetRoute, exclusionRoute] });
 router.setDefaultHandler({
     handler: new workbox.runtimeCaching.CacheFirst()
 });
